@@ -1,7 +1,52 @@
 .App {
   margin: auto;
+  width: 30%;
+  font-family: 'Roboto', sans-serif;
+    color: #212121;
+    text-align: center;
 }
 
+
+.input{
+    min-height:50px;
+    padding:5%;
+    background: #CFD8DC;
+}
+
+.suggest{
+height: 40px;
+overflow: hidden;
+display: block;
+    text-align: left;
+    background-color: #4CAF50;
+}
+
+.suggest .item{
+height: 50%;
+padding: 10px;
+    vertical-align: center;
+    text-align: center;
+    background-color: #4CAF50;
+    display:  inline-block;
+    color: #FFFFFF;
+    font-size: 100%;
+}
+
+.suggest .item:hover{
+    cursor: pointer;
+    background-color: #18ab1a;
+}
+.pushed{
+    cursor: pointer;
+    background-color: #18ab1a !important;
+    font-weight: bold;
+}
+.unpushed{
+    cursor: pointer;
+    background-color: #4CAF50;
+    font-weight: normal;
+    text-decoration: line-through;
+}
 .App-header {
   background-color: #222;
   height: 150px;
@@ -9,3 +54,18 @@
   color: white;
 }
 
+@media only screen and (max-width: 1000px) {
+    .App {
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .App {
+        width: 75%;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .App {
+        width: 100%;
+    }
+}

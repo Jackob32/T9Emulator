@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import './Keyboard.css';
 
-
-
 class Keyboard extends Component{
 
     constructor(props) {
         super(props);
-        this.state = {suggested: [], keys: "", text: "", sentence: ""};
 
         this.keys = [
             ".,?",
@@ -21,24 +18,19 @@ class Keyboard extends Component{
              "wxyz",
             "*",
              "_",
-             "#"
+             '\u2190'
         ];
-
-        console.log(this.keys);
     }
 
     render(){
-
         return(
-            <div className="Keyboard" >
-
+            <div className="keyboard" >
                 {this.keys.map((res,i) =>{
                    let n=++i;
                         if(n>9)n="";
-
                 return <div className="button" data-key={i} key={i} onClick={this.props.handleMyKeyPress}>
-                <span className="number">{n}</span>
-                <span className="letter">{res}</span>
+                <span className="number" data-key={i} >{n} </span><br />
+                <span className="letter" data-key={i} >{res}</span>
             </div>})
                 }
 
@@ -46,7 +38,6 @@ class Keyboard extends Component{
         )
     }
 }
-
 
 
 export default Keyboard;
