@@ -24,13 +24,6 @@ class App extends Component {
 
     }
 
-    //Loading statrup ssettings for the future, language, keyboard settings etc
-    componentDidMount() {
-        fetch('/api')
-            .then(handleError)
-            .then(response => this.setState({response}));
-    }
-
     //Switching T9 autocorrect
     switchAutoT9() {
 
