@@ -27,7 +27,7 @@ class App extends Component {
     //Loading statrup ssettings for the future, language, keyboard settings etc
     componentDidMount() {
         fetch('/api')
-            .then(res => res.json())
+            .then(handleError)
             .then(response => this.setState({response}));
     }
 
