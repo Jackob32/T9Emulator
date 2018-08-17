@@ -1,18 +1,19 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
-const keyboard = [
-  [],
-  [],
-  ["a", "b", "c"],
-  ["d", "e", "f"],
-  ["g", "h", "i"],
-  ["j", "k", "l"],
-  ["m", "n", "o"],
-  ["p", "q", "r", "s"],
-  ["t", "u", "v"],
-  ["w", "x", "y", "z"],
-];
+const keyboard = {
+0:[],
+1:[],
+2:["a", "b", "c"],
+3:["d", "e", "f"],
+4:["g", "h", "i"],
+5:["j", "k", "l"],
+6:["m", "n", "o"],
+7:["p", "q", "r", "s"],
+8:["t", "u", "v"],
+9:["w", "x", "y", "z"]
+};
+
 
 /* GET api results listing. */
 router.get('/', function(req, res, next) {
@@ -30,14 +31,14 @@ router.get('/', function(req, res, next) {
     }
 
     //for each char in number
-    for (var i = 1; i < sDialed.length; i++) {
+    for (let i = 1; i < sDialed.length; i++) {
 
       let tmpres = [];
-      var keyint = parseInt(sDialed[i], 10);
+      let keyint = parseInt(sDialed[i], 10);
       //extend results
-      for (var p = 0; p < result.length; p++) {
+      for (let p = 0; p < result.length; p++) {
         //by the possibilities
-        for (var n = 0; n < keyboard[keyint].length; n++) {
+        for (let n = 0; n < keyboard[keyint].length; n++) {
           tmpres.push(result[p] + keyboard[keyint][n]);
         }
       }
@@ -45,11 +46,8 @@ router.get('/', function(req, res, next) {
 
     }
 
-    res.json(result);
+  } res.json(result);
 
-  } else {
-        res.status(404).send();
-  }
 });
 
 module.exports = router;
