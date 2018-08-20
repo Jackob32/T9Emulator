@@ -88,7 +88,7 @@ class App extends Component {
                 t9: t9
             });
         } else {
-            fetch('/api?dialed=' + number[n])
+            fetch('/prefixTree?dialed=' + number[n])
                 .then(handleError)
                 .then(res => {
                         text[this.state.n] = res;
