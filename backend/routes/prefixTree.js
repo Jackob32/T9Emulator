@@ -3,7 +3,7 @@ let router = express.Router();
 let PrefixTree = require('prefix-tree');
 let fs = require('fs');
 
-const translate = {
+router.translate = {
     "a": "2",
     "b": "2",
     "c": "2",
@@ -32,23 +32,21 @@ const translate = {
     "z": "9"
 };
 
-let tree = new PrefixTree();
+router.tree = new PrefixTree();
 
-const words = fs.readFileSync("./routes/google-10000-english-no-swears.txt", "utf8").split("\n");
+router.words = fs.readFileSync("./routes/google-10000-english-no-swears.txt", "utf8").split("\n");
 
-let generateTree = function () {
-
-
-    words.forEach(function (word, p) {
+router.generateTree = function () {
+    router.words.forEach(function (word, p) {
         word = word.trim("\r");
         let T9word = "";
         for (let i = 0; i < word.length; i++) {
             let l = word[i];
-            T9word += translate[l];
+            T9word += router.translate[l];
         }
         T9word += p;
 
-        tree.set(T9word, {word, p});
+        router.tree.set(T9word, {word, p});
     });
 
     console.log("Tree was Created");
@@ -68,7 +66,7 @@ function compare(a, b) {
 
 //https://github.com/first20hours/google-10000-english
 
-generateTree();
+router.generateTree();
 
 /* GET api results listing. */
 router.get('/', function (req, res, next) {
@@ -81,9 +79,8 @@ router.get('/', function (req, res, next) {
 
         var sDialed = req.query.dialed.toString();
 
-        result = tree.get(sDialed);
+        result = router.tree.get(sDialed);
         result = result.sort(compare);
-        console.log(result);
 
         result = result.map((item) => {
             return item.word;
@@ -94,9 +91,18 @@ router.get('/', function (req, res, next) {
         });
 
         result = result.slice(0, 50);
-
+        console.log(result);
+        res.statusCode = 200;
+        res.json({status:"success", data:result});
+    }else{
+        res.statusCode = 400;
+        res.json({
+            status:"error",
+            data:[],
+            error:'Wrong Input'
+    });
     }
-    res.json(result);
+
 
 });
 

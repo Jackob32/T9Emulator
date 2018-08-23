@@ -1,5 +1,5 @@
 import React from 'react';
-import Keyboard from './Keyboard';
+import Keyboard from '../components/Keyboard';
 import { shallow, mount, render ,configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 

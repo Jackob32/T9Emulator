@@ -46,8 +46,16 @@ router.get('/', function(req, res, next) {
 
     }
 
-  } res.json(result);
-
+      res.statusCode = 200;
+      res.json({status:"success", data:result});
+  }else{
+      res.statusCode = 400;
+      res.json({
+          status:"error",
+          data:[],
+          error:'Wrong Input'
+      });
+  }
 });
 
 module.exports = router;

@@ -21,7 +21,6 @@ class App extends Component {
         this.handleMyKeyPress = this.handleMyKeyPress.bind(this);
         this.switchAutoT9 = this.switchAutoT9.bind(this);
         this.applyT9 = this.applyT9.bind(this);
-
     }
 
     //Switching T9 autocorrect
@@ -45,6 +44,7 @@ class App extends Component {
         });
 
     }
+
 
 //adds new letter with checking and T9 fetching
     setLetter(key) {
@@ -90,7 +90,8 @@ class App extends Component {
         } else {
             fetch('/prefixTree?dialed=' + number[n])
                 .then(handleError)
-                .then(res => {
+                .then(result => {
+                    let res=result.data;
                         text[this.state.n] = res;
                         let t9 = this.state.t9;
                         if (res && res.length > 0 && this.state.autoT9) {
@@ -101,9 +102,7 @@ class App extends Component {
                             t9: t9
                         });
                     }
-                ).catch(error => {
-                console.log(error);
-            });
+                ).catch(error => console.log(error));
         }
 
     }
@@ -142,9 +141,9 @@ class App extends Component {
                         this.state.text[this.state.n].map(
                             (res, index) =>
                                 <span
-                                className="item" key={index}
-                                data-key={res}
-                                onClick={this.applyT9}> {res}
+                                    className="item" key={index}
+                                    data-key={res}
+                                    onClick={this.applyT9}> {res}
                                 </span>
                         )
                     }
